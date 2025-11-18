@@ -1,4 +1,3 @@
-import React from "react";
 import type { TaskSelectorProps } from "../utils/interfaces";
 
 function TaskSelector({ sprites }: TaskSelectorProps) {

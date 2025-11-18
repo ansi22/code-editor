@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 import PlayGround from "./components/PlayGround";
 
@@ -167,7 +167,7 @@ function App() {
     animationRef.current = requestAnimationFrame(animateAllSprites);
   };
 
-  const animateAllSprites = (timestamp: number) => {
+  const animateAllSprites = () => {
     setSprites((prevSprites) => {
       let updatedSprites = [...prevSprites];
       let anySpriteAnimating = false;
@@ -194,7 +194,7 @@ function App() {
         const currentTask = sprite.tasks[sprite.currentTaskIndex];
         const updatedSprite = executeSpriteTask(sprite, currentTask);
 
-        if (isTaskCompleted(updatedSprite, currentTask)) {
+        if (isTaskCompleted(currentTask)) {
           updatedSprites[index] = {
             ...updatedSprite,
             currentTaskIndex: updatedSprite.currentTaskIndex + 1,
@@ -205,7 +205,7 @@ function App() {
       });
 
       // Check for collisions between animated sprites
-      updatedSprites = checkCollisions(updatedSprites, timestamp);
+      updatedSprites = checkCollisions(updatedSprites);
 
       if (anySpriteAnimating) {
         animationRef.current = requestAnimationFrame(animateAllSprites);
@@ -274,7 +274,7 @@ function App() {
         currentTask
       );
 
-      if (isTaskCompleted(updatedSprite, currentTask)) {
+      if (isTaskCompleted(currentTask)) {
         updatedSprites[spriteIndex] = {
           ...updatedSprite,
           currentTaskIndex: updatedSprite.currentTaskIndex + 1,
@@ -284,7 +284,7 @@ function App() {
       }
 
       // Check for collisions with other animated sprites
-      updatedSprites = checkCollisions(updatedSprites, Date.now());
+      updatedSprites = checkCollisions(updatedSprites);
 
       if (updatedSprites[spriteIndex].isAnimating) {
         animationRef.current = requestAnimationFrame(() =>
@@ -424,11 +424,11 @@ function App() {
     return sprite;
   };
 
-  const isTaskCompleted = (sprite: Sprite, task: any): boolean => {
+  const isTaskCompleted = (task: any): boolean => {
     return task.progress >= 1;
   };
 
-  const checkCollisions = (sprites: Sprite[], timestamp: number): Sprite[] => {
+  const checkCollisions = (sprites: Sprite[]): Sprite[] => {
     const updatedSprites = [...sprites];
     const animatedSprites = updatedSprites.filter(
       (sprite) => sprite.isAnimating

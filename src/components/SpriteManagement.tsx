@@ -6,7 +6,6 @@ const SpriteManagement = ({
   onStopSprite,
   onClearSpriteTasks,
   onRemoveSprite,
-  isAnySpriteAnimating,
 }: any) => {
   return (
     <div className="h-full">
