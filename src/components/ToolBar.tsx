@@ -78,13 +78,6 @@ function ToolBar() {
           </div>
         ))}
       </div>
-
-      {/* Instructions */}
-      <div className="mt-auto pt-4 border-t border-[#007b88]">
-        <p className="text-sm text-[#007b88] text-center">
-          Drag tasks to the PlayGround panel
-        </p>
-      </div>
     </div>
   );
 }

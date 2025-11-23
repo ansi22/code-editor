@@ -193,7 +193,7 @@ function TaskSelector({ sprites }: TaskSelectorProps) {
           )}
         </div>
 
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-scroll">
           <h4 className="font-semibold text-gray-800 mb-3">
             Sprites Information
           </h4>

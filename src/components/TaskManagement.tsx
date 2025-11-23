@@ -32,8 +32,8 @@ const TaskManagement = ({
             </div>
           ) : (
             <div
-              className="space-y-2 overflow-y-auto pr-1"
-              style={{ maxHeight: "400px" }}
+              className="space-y-2 overflow-y-scroll pr-1 pb-20"
+              style={{ height: "400px" }}
             >
               {tasks.map((task: any, index: number) => (
                 <TaskItem
@@ -97,7 +97,7 @@ const TaskManagement = ({
         </div>
       )}
 
-      <div className="flex-1 min-h-0">
+      <div className="flex-1 min-h-0 flex flex-col">
         {spriteTasks.length === 0 ? (
           <div className="h-full flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-gray-200 rounded-xl text-gray-500">
             <div className="text-4xl mb-3">📋</div>
@@ -110,11 +110,8 @@ const TaskManagement = ({
             </p>
           </div>
         ) : (
-          <div
-            className="space-y-2 overflow-y-auto pr-1"
-            style={{ maxHeight: "400px" }}
-          >
-            {spriteTasks.map((task: any, index: number) => (
+          <div className="space-y-2 overflow-y-auto pr-1 pb-20 h-[400px]">
+            {spriteTasks.map((task: any, index: any) => (
               <TaskItem
                 key={task.id}
                 task={task}

@@ -14,10 +14,15 @@ const TaskItem = ({
             <span className="text-xs text-gray-500">steps:</span>
             <input
               type="number"
-              value={task.steps || 50}
-              onChange={(e) =>
-                onUpdate({ steps: parseInt(e.target.value) || 0 })
-              }
+              value={task.steps ?? ""}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === "") {
+                  onUpdate({ steps: 0 });
+                  return;
+                }
+                onUpdate({ steps: Number(value) });
+              }}
               className="w-12 px-1 py-0.5 border border-gray-300 rounded text-xs"
               min="1"
             />
@@ -30,10 +35,15 @@ const TaskItem = ({
             <span className="text-xs text-gray-500">degrees:</span>
             <input
               type="number"
-              value={task.degrees || 90}
-              onChange={(e) =>
-                onUpdate({ degrees: parseInt(e.target.value) || 0 })
-              }
+              value={task.degrees ?? ""}
+              onChange={(e: any) => {
+                const value = e.target.value;
+                if (value === "") {
+                  onUpdate({ degrees: 0 });
+                  return;
+                }
+                onUpdate({ degrees: parseInt(e.target.value) });
+              }}
               className="w-12 px-1 py-0.5 border border-gray-300 rounded text-xs"
               min="-360"
               max="360"
@@ -48,8 +58,15 @@ const TaskItem = ({
               <span className="text-xs text-gray-500">x:</span>
               <input
                 type="number"
-                value={task.x || 300}
-                onChange={(e) => onUpdate({ x: parseInt(e.target.value) || 0 })}
+                value={task.x ?? ""}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value === "") {
+                    onUpdate({ x: 0 });
+                    return;
+                  }
+                  onUpdate({ x: parseInt(e.target.value) || 0 });
+                }}
                 className="w-12 px-1 py-0.5 border border-gray-300 rounded text-xs"
               />
             </div>
@@ -57,8 +74,15 @@ const TaskItem = ({
               <span className="text-xs text-gray-500">y:</span>
               <input
                 type="number"
-                value={task.y || 300}
-                onChange={(e) => onUpdate({ y: parseInt(e.target.value) || 0 })}
+                value={task.y ?? ""}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value === "") {
+                    onUpdate({ y: 0 });
+                    return;
+                  }
+                  onUpdate({ y: parseInt(e.target.value) });
+                }}
                 className="w-12 px-1 py-0.5 border border-gray-300 rounded text-xs"
               />
             </div>
@@ -70,7 +94,7 @@ const TaskItem = ({
           <div className="mt-1">
             <input
               type="text"
-              value={task.message || "Hello!"}
+              value={task.message ?? ""}
               onChange={(e) => onUpdate({ message: e.target.value })}
               className="w-full px-2 py-1 border border-gray-300 rounded text-xs"
               placeholder="Message..."
@@ -83,7 +107,7 @@ const TaskItem = ({
           <div className="mt-1">
             <input
               type="text"
-              value={task.message || "Hmm..."}
+              value={task.message ?? ""}
               onChange={(e) => onUpdate({ message: e.target.value })}
               className="w-full px-2 py-1 border border-gray-300 rounded text-xs"
               placeholder="Thought..."

@@ -127,7 +127,7 @@ function App() {
     );
   };
 
-  // Clear all tasks from a specific sprite
+  // ll tasks from a specific sprite
   const clearSpriteTasks = (spriteId: string) => {
     setSprites((prev) =>
       prev.map((sprite) =>
